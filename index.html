@@ -394,6 +394,12 @@ border-color: var(--singer-border-color, inherit) !important;
   /* スマホ版のみ：ネオンアニメーションを独立して描画 */
   will-change: transform, filter !important;
 }
+@media screen and (max-width: 768px) {
+  .animated-main-logo {
+    filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.55))
+            drop-shadow(0 0 14px rgba(230, 57, 115, 0.55)) !important;
+  }
+}
 
   .top-fixed-bar {
     padding: 8px 14px;
