@@ -225,7 +225,7 @@
     .singer-icon {
       width: 28px; height: 28px; border-radius: 50%; object-fit: cover;
       background: #000; flex-shrink: 0; border: 2px solid var(--primary-pink);
-      pointer-events: none;
+  pointer-events: auto;
       user-select: none;
       -webkit-user-drag: none;
     }
@@ -903,7 +903,55 @@ border-color: var(--singer-border-color, inherit) !important;
     font-size: 16px !important;
     -webkit-text-size-adjust: 100% !important;
   }
+@media (max-width: 600px) {
+  #categoryContainer {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    overflow-x: visible !important;
+    gap: 3px !important;
+    margin-top: 2px !important;
+    justify-content: center !important;
+    background: var(--bg-card, #1a1a24) !important;
+    border: 1px solid rgba(205, 55, 100, 0.35) !important;
+    border-radius: 10px !important;
+    padding: 6px 6px !important;
+    box-sizing: border-box !important;
+  }
 
+  #categoryContainer .category-btn {
+    font-size: 0.65rem !important;
+    padding: 2px 6px !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(205, 55, 100, 0.4) !important;
+    background: transparent !important;
+    color: inherit !important;
+    margin: 0 !important;
+    line-height: normal !important;
+    box-sizing: border-box !important;
+  }
+
+  #categoryContainer .category-btn.active {
+    background: var(--primary-pink, #ff69b4) !important;
+    color: #ffffff !important;
+    border-color: var(--primary-pink, #ff69b4) !important;
+  }
+}
+/* ▼ 【追加】ライバー名フロー外ツールチップ用スタイル（レイアウト非干渉） */
+  .liver-fixed-tooltip {
+    position: fixed;
+    background: rgba(20, 18, 30, 0.95);
+    color: #fff;
+    border: 1px solid rgba(216, 112, 147, 0.5);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 99999;
+    display: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  }
 </style>
 </head>
 <body id="topPage">
@@ -992,7 +1040,7 @@ border-color: var(--singer-border-color, inherit) !important;
   <button class="sub-filter-btn" data-sub="Shorts" onclick="toggleSubFilter('Shorts')">Shorts <span class="count">(0)</span></button>
   <button class="sub-filter-btn" data-sub="Mix" onclick="toggleSubFilter('Mix')">Mix <span class="count">(0)</span></button>
   <button class="sub-filter-btn" data-sub="コーラス/演奏" onclick="toggleSubFilter('コーラス/演奏')">コーラス/演奏 <span class="count">(0)</span></button>
-  <button class="sub-filter-btn" data-sub="再生リスト未収録" onclick="toggleSubFilter('再生リスト未収録')">再生リスト未収録 <span class="count">(0)</span></button>
+  <button class="sub-filter-btn" data-sub="再生リスト未追加" onclick="toggleSubFilter('再生リスト未追加')">再生リスト未追加 <span class="count">(0)</span></button>
 </div>
 </div>
     
@@ -1119,9 +1167,18 @@ border-color: var(--singer-border-color, inherit) !important;
     "one ok rock": ["ワンオク"],
     "L'Arc〜en〜Ciel": ["ラルク", "L'Arc〜en〜Ciel", "ラルクアンシエル"],
     "ASIAN KUNG-FU GENERATION": ["アジカン", "ASIAN KUNG-FU GENERATION"],
-    "ST☆RISH": ["ST☆RISH", "スタリ", "うたプリ"],
+    "ST☆RISH": ["スタリ", "うたプリ"],
+   "Official髭男dism": ["ヒゲダン"],
+    "VOLTACTION": ["VOLTA","ボルタ","ヴォルタ"],
+
+
     // 追加例: "正式なアーティスト名": ["別名1", "別名2", ...]
   };
+  // --- 楽曲名の表記揺れ・エイリアス設定 ---
+const titleAliases = {
+  "丸ノ内サディスティック": ["丸の内サディスティック"]
+  // 追加例: "正式な楽曲名": ["別表記1", "別表記2", ...]
+};
 
   // 文字列の正規化（大文字小文字、全角半角、スペース・記号の吸収）
   function normalizeText(str) {
@@ -1372,45 +1429,101 @@ const categoryContainer = document.getElementById('categoryContainer');
     }
     return false;
   }
+function matchSearch(song, queryText) {
+  if (!queryText) return true;
 
-  function matchSearch(song, queryText) {
-    if (!queryText) return true;
-    const rawQuery = queryText.trim();
-    const searchTerms = rawQuery.includes(' OR ') || rawQuery.includes(',')
-      ? rawQuery.split(/ OR |,/).map(t => t.trim()).filter(Boolean)
-      : rawQuery.split(/\s+/).map(t => t.trim()).filter(Boolean);
+  const rawQuery = queryText.trim();
+  const searchTerms = rawQuery.includes(' OR ') || rawQuery.includes(',')
+    ? rawQuery.split(/ OR |,/).map(t => t.trim()).filter(Boolean)
+    : rawQuery.split(/\s+/).map(t => t.trim()).filter(Boolean);
 
-    const groupText = song.group ? song.group.join(' ') : '';
-    let singerText = '';
-    if (song.singers) {
-      singerText = song.singers.map(s => getSingerInfo(s).name).join(' ');
+  const groupText = song.group ? song.group.join(' ') : '';
+  let singerText = '';
+  if (song.singers) {
+    singerText = song.singers.map(s => getSingerInfo(s).name).join(' ');
+  }
+
+  return searchTerms.some(term => {
+    const q = normalizeText(term);
+    if (!q) return false;
+
+    // 公開日検索
+    // YYYY-MM-DD → 年月日一致
+    // YYYY-MM    → 年月一致
+    // YYYY       → 年一致
+    const dateMatch = term.trim().match(/^(\d{4})(?:-(\d{1,2})(?:-(\d{1,2}))?)?$/);
+
+    if (dateMatch) {
+      const year = dateMatch[1];
+      const month = dateMatch[2]
+        ? String(Number(dateMatch[2])).padStart(2, '0')
+        : null;
+      const day = dateMatch[3]
+        ? String(Number(dateMatch[3])).padStart(2, '0')
+        : null;
+
+      const songDate = song.date || '';
+
+      if (!songDate) return false;
+
+      const songDateParts = songDate.split('-');
+      const songYear = songDateParts[0];
+      const songMonth = songDateParts[1] || '';
+      const songDay = songDateParts[2] || '';
+
+      if (year !== songYear) return false;
+      if (month && month !== songMonth) return false;
+      if (day && day !== songDay) return false;
+
+      return true;
     }
 
-    return searchTerms.some(term => {
-      const q = normalizeText(term);
-      if (!q) return false;
+    // アーティストの表記揺れ・エイリアス
+    const matchedCanonicalArtists = [];
 
-      const matchedCanonicalArtists = [];
-      for (const [canonical, aliases] of Object.entries(artistAliases)) {
-        if (aliases.some(alias => normalizeText(alias).includes(q))) {
-          matchedCanonicalArtists.push(normalizeText(canonical));
-        }
+    for (const [canonical, aliases] of Object.entries(artistAliases)) {
+      if (aliases.some(alias => normalizeText(alias).includes(q))) {
+        matchedCanonicalArtists.push(normalizeText(canonical));
       }
+    }
 
-      const titleText = normalizeText(song.title || '');
-      const artistText = normalizeText(song.artist || '');
-      const gText = normalizeText(groupText);
-      const sText = normalizeText(singerText);
+    // 楽曲名の表記揺れ・エイリアス
+    const matchedCanonicalTitles = [];
 
-      return (
-        titleText.includes(q) ||
-        artistText.includes(q) ||
-        gText.includes(q) ||
-        sText.includes(q) ||
-        matchedCanonicalArtists.some(canonical => artistText.includes(canonical) || sText.includes(canonical))
-      );
-    });
-  }
+    for (const [canonical, aliases] of Object.entries(titleAliases)) {
+      const normalizedCanonical = normalizeText(canonical);
+
+      if (
+        normalizedCanonical.includes(q) ||
+        q.includes(normalizedCanonical) ||
+        aliases.some(alias => {
+          const normalizedAlias = normalizeText(alias);
+          return normalizedAlias.includes(q) || q.includes(normalizedAlias);
+        })
+      ) {
+        matchedCanonicalTitles.push(normalizedCanonical);
+      }
+    }
+
+    const titleText = normalizeText(song.title || '');
+    const artistText = normalizeText(song.artist || '');
+    const gText = normalizeText(groupText);
+    const sText = normalizeText(singerText);
+
+    return (
+      titleText.includes(q) ||
+      artistText.includes(q) ||
+      gText.includes(q) ||
+      sText.includes(q) ||
+      matchedCanonicalArtists.some(
+        canonical => artistText.includes(canonical) || sText.includes(canonical)
+      ) ||
+      matchedCanonicalTitles.some(
+        canonical => titleText.includes(canonical)
+      )
+    );
+  });
+}
 
   function matchSubFilter(song, subFilter = selectedSubFilter) {
     if (!subFilter) return true;
@@ -1593,11 +1706,11 @@ const thumbElementHtml = hasVideo
       let iconsInner = '';
 
       if (song.singers && song.singers.length > 0) {
-        const singerIcons = song.singers.map(s => {
-          const info = getSingerInfo(s);
-          const borderStyle = info.color ? `style="border-color: ${info.color};"` : '';
-          return `<img src="${info.icon}" class="singer-icon" ${borderStyle} title="${info.name}" alt="${info.name}" draggable="false" onerror="this.style.borderColor='var(--primary-pink)'">`;
-        }).join('');
+const singerIcons = song.singers.map(s => {
+  const info = getSingerInfo(s);
+  const borderStyle = info.color ? `style="border-color: ${info.color};"` : '';
+  return `<img src="${info.icon}" class="singer-icon" data-singer="${info.name}" ${borderStyle} title="${info.name}" alt="${info.name}" draggable="false" onerror="this.style.borderColor='var(--primary-pink)'">`;
+}).join('');
         iconsInner += singerIcons;
       }
 
@@ -2114,21 +2227,165 @@ const subFilterButtons = document.querySelectorAll('.sub-filter-btn');
   });
 
   // ▼ 【追加】ファイル内の `<script>` タグの最後の行の直前に追加してください ▼
-  document.addEventListener('DOMContentLoaded', () => {
-    if (window.innerWidth <= 600) {
-      const subcategoryContainer = document.querySelector('.subcategory-container');
-      if (subcategoryContainer && !document.getElementById('mobileDetailToggle')) {
-        const toggleBtn = document.createElement('button');
-        toggleBtn.id = 'mobileDetailToggle';
-        toggleBtn.className = 'mobile-detail-toggle-btn';
-        toggleBtn.innerHTML = '▾ 詳細絞り込み';
-        
-        const detailContent = document.createElement('div');
-        detailContent.id = 'mobileDetailContent';
-        detailContent.className = 'mobile-detail-content';
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.innerWidth <= 600) {
+    const subcategoryContainer = document.querySelector('.subcategory-container');
+    if (subcategoryContainer && !document.getElementById('mobileDetailToggle')) {
+      const toggleBtn = document.createElement('button');
+      toggleBtn.id = 'mobileDetailToggle';
+      toggleBtn.className = 'mobile-detail-toggle-btn';
+      toggleBtn.innerHTML = '▾ 詳細絞り込み';
+      
+      const detailContent = document.createElement('div');
+      detailContent.id = 'mobileDetailContent';
+      detailContent.className = 'mobile-detail-content';
+
+      subcategoryContainer.parentNode.insertBefore(toggleBtn, subcategoryContainer);
+      subcategoryContainer.parentNode.insertBefore(detailContent, subcategoryContainer);
+    }
+  }
+});
+// ▼ 【差し替え】ライバー名表示ロジック（.singers-container 対応強化版）
+// ▼ 【差し替え】アイコン画像・URL・インデックス対応型ライバー名表示ロジック
+document.addEventListener('DOMContentLoaded', () => {
+  let tooltip = document.querySelector('.liver-fixed-tooltip');
+  if (!tooltip) {
+    tooltip = document.createElement('div');
+    tooltip.className = 'liver-fixed-tooltip';
+    document.body.appendChild(tooltip);
+  }
+
+  let activeTarget = null;
+  let isTouchMode = false;
+
+  function resolveSingerName(target) {
+    if (!target) return null;
+    
+    // 1. 属性チェック
+    const direct = target.alt || target.title || target.dataset?.singer || target.dataset?.name || target.getAttribute('aria-label');
+    if (direct) return direct;
+
+    const img = target.tagName === 'IMG' ? target : target.querySelector('img');
+    if (img) {
+      if (img.alt) return img.alt;
+      if (img.title) return img.title;
+    }
+
+    // 2. URL（src または background-image）から singerData / groupData を照合
+    let srcUrl = img ? img.src : null;
+    if (!srcUrl) {
+      const computed = window.getComputedStyle(target.tagName === 'DIV' || target.tagName === 'SPAN' ? target : target.parentElement);
+      const bg = computed.backgroundImage;
+      if (bg && bg !== 'none') {
+        const m = bg.match(/url\(['"]?(.*?)['"]?\)/);
+        if (m) srcUrl = m[1];
       }
     }
+
+    const sData = window.singerData || (typeof singerData !== 'undefined' ? singerData : null);
+    const gData = window.groupData || (typeof groupData !== 'undefined' ? groupData : null);
+    if (srcUrl && (sData || gData)) {
+      const merged = { ...(sData || {}), ...(gData || {}) };
+      for (const [name, info] of Object.entries(merged)) {
+        if (info.icon && srcUrl.includes(info.icon.split('?')[0])) {
+          return name;
+        }
+      }
+    }
+
+    // 3. .singers-container 内のDOM順と songs 配列のインデックス紐づけフォールバック
+    const container = target.closest('.singers-container');
+    if (container) {
+      const card = container.closest('.song-card');
+      const itemEl = target.parentElement === container ? target : target.closest('.singers-container > *');
+      const children = Array.from(container.children);
+      const idx = children.indexOf(itemEl);
+
+      if (card && idx >= 0) {
+        // カード内のタイトル等から該当楽曲を特定
+        const titleEl = card.querySelector('.song-title') || card.querySelector('div, h3, h2');
+        const cardText = titleEl ? titleEl.textContent.trim() : '';
+        const songsList = window.songs || (typeof songs !== 'undefined' ? songs : null);
+        if (songsList && cardText) {
+          const matchedSong = songsList.find(s => cardText.includes(s.title));
+          if (matchedSong && matchedSong.singers && matchedSong.singers[idx]) {
+            return matchedSong.singers[idx];
+          }
+        }
+      }
+    }
+
+    return null;
+  }
+
+  function showTip(target, name) {
+    if (!name) return;
+    tooltip.textContent = name;
+    tooltip.style.display = 'block';
+    const rect = target.getBoundingClientRect();
+    const tRect = tooltip.getBoundingClientRect();
+    let left = rect.left + (rect.width / 2) - (tRect.width / 2);
+    let top = rect.top - tRect.height - 6;
+    if (top < 4) top = rect.bottom + 6;
+    tooltip.style.left = `${Math.max(4, left)}px`;
+    tooltip.style.top = `${top}px`;
+    activeTarget = target;
+  }
+
+  function hideTip() {
+    tooltip.style.display = 'none';
+    activeTarget = null;
+  }
+
+const selector = '.singers-container .singer-icon[data-singer]';
+
+  document.addEventListener('mouseover', (e) => {
+    if (isTouchMode) return;
+    const target = e.target.closest(selector);
+    if (target) {
+      const name = resolveSingerName(target);
+      if (name) showTip(target, name);
+    }
   });
+
+  document.addEventListener('mouseout', (e) => {
+    if (isTouchMode) return;
+    const target = e.target.closest(selector);
+    if (target && activeTarget === target) hideTip();
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest(selector);
+    if (target) {
+      const name = resolveSingerName(target);
+      if (name) {
+        if (window.innerWidth <= 768 || e.pointerType === 'touch') {
+          isTouchMode = true;
+          if (activeTarget === target && tooltip.style.display === 'block') {
+            hideTip();
+          } else {
+            showTip(target, name);
+          }
+          e.stopPropagation();
+        }
+      }
+    } else {
+      if (tooltip.style.display === 'block') hideTip();
+    }
+  }, { capture: true });
+
+  window.addEventListener('scroll', () => {
+    if (tooltip.style.display === 'block' && activeTarget) {
+      const rect = activeTarget.getBoundingClientRect();
+      const tRect = tooltip.getBoundingClientRect();
+      let left = rect.left + (rect.width / 2) - (tRect.width / 2);
+      let top = rect.top - tRect.height - 6;
+      if (top < 4) top = rect.bottom + 6;
+      tooltip.style.left = `${Math.max(4, left)}px`;
+      tooltip.style.top = `${top}px`;
+    }
+  }, { passive: true });
+});
 </script>
 </body>
- </html>
+</html>
