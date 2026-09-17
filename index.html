@@ -229,6 +229,16 @@
       user-select: none;
       -webkit-user-drag: none;
     }
+    /* スマホ版：歌唱者アイコンの画像保存を防止 */
+@media screen and (max-width: 768px) {
+  .singer-icon {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
+  }
+}
 
     .tags-container {
       display: flex;
@@ -374,13 +384,16 @@ border-color: var(--singer-border-color, inherit) !important;
   .logo-wrapper {
     margin: 0 !important;
   }
-  .animated-main-logo {
-    height: 170px !important;
-    width: 100% !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-  }
+ .animated-main-logo {
+  height: 170px !important;
+  width: 100% !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+
+  /* スマホ版のみ：ネオンアニメーションを独立して描画 */
+  will-change: transform, filter !important;
+}
 
   .top-fixed-bar {
     padding: 8px 14px;
