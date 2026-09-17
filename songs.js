@@ -1473,7 +1473,7 @@ const songs = [
     date: "2025-06-11",
     singers: ["渡会雲雀","不破湊", "イブラヒム", "ローレン・イロアス"],
     group: ["2時だとか"],
-    tags: ["歌ってみた","コラボ","3D/ライブ","バンド"],
+    tags: ["歌ってみた","コラボ","3D/ライブ","バンド","Mix"],
     youtube: "https://youtu.be/CmLXMa2DVVE?si=YmTNOVpKLpLHir5k"
   },
   {
