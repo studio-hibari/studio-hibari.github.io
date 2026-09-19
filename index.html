@@ -222,13 +222,14 @@
 
     .singers-container { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; align-items: center; min-height: 28px; }
    
-    .singer-icon {
-      width: 28px; height: 28px; border-radius: 50%; object-fit: cover;
-      background: #000; flex-shrink: 0; border: 2px solid var(--primary-pink);
+.singer-icon {
+  width: 28px; height: 28px; border-radius: 50%; object-fit: cover;
+  background: #000; flex-shrink: 0; border: 2px solid var(--primary-pink);
   pointer-events: auto;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
     /* スマホ版：歌唱者アイコンの画像保存を防止 */
 @media screen and (max-width: 768px) {
   .singer-icon {
@@ -2260,6 +2261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ▼ 【差し替え】アイコン画像・URL・インデックス対応型ライバー名表示ロジック
 document.addEventListener('DOMContentLoaded', () => {
   let tooltip = document.querySelector('.liver-fixed-tooltip');
+
   if (!tooltip) {
     tooltip = document.createElement('div');
     tooltip.className = 'liver-fixed-tooltip';
@@ -2272,7 +2274,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function resolveSingerName(target) {
     if (!target) return null;
     
-    // 1. 属性チェック
     const direct = target.alt || target.title || target.dataset?.singer || target.dataset?.name || target.getAttribute('aria-label');
     if (direct) return direct;
 
@@ -2282,11 +2283,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (img.title) return img.title;
     }
 
-    // 2. URL（src または background-image）から singerData / groupData を照合
     let srcUrl = img ? img.src : null;
     if (!srcUrl) {
-      const computed = window.getComputedStyle(target.tagName === 'DIV' || target.tagName === 'SPAN' ? target : target.parentElement);
+      const computed = window.getComputedStyle(
+        target.tagName === 'DIV' || target.tagName === 'SPAN'
+          ? target
+          : target.parentElement
+      );
       const bg = computed.backgroundImage;
+
       if (bg && bg !== 'none') {
         const m = bg.match(/url\(['"]?(.*?)['"]?\)/);
         if (m) srcUrl = m[1];
@@ -2295,8 +2300,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sData = window.singerData || (typeof singerData !== 'undefined' ? singerData : null);
     const gData = window.groupData || (typeof groupData !== 'undefined' ? groupData : null);
+
     if (srcUrl && (sData || gData)) {
       const merged = { ...(sData || {}), ...(gData || {}) };
+
       for (const [name, info] of Object.entries(merged)) {
         if (info.icon && srcUrl.includes(info.icon.split('?')[0])) {
           return name;
@@ -2304,22 +2311,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 3. .singers-container 内のDOM順と songs 配列のインデックス紐づけフォールバック
     const container = target.closest('.singers-container');
+
     if (container) {
       const card = container.closest('.song-card');
-      const itemEl = target.parentElement === container ? target : target.closest('.singers-container > *');
+      const itemEl = target.parentElement === container
+        ? target
+        : target.closest('.singers-container > *');
+
       const children = Array.from(container.children);
       const idx = children.indexOf(itemEl);
 
       if (card && idx >= 0) {
-        // カード内のタイトル等から該当楽曲を特定
-        const titleEl = card.querySelector('.song-title') || card.querySelector('div, h3, h2');
+        const titleEl =
+          card.querySelector('.song-title') ||
+          card.querySelector('div, h3, h2');
+
         const cardText = titleEl ? titleEl.textContent.trim() : '';
-        const songsList = window.songs || (typeof songs !== 'undefined' ? songs : null);
+        const songsList =
+          window.songs ||
+          (typeof songs !== 'undefined' ? songs : null);
+
         if (songsList && cardText) {
-          const matchedSong = songsList.find(s => cardText.includes(s.title));
-          if (matchedSong && matchedSong.singers && matchedSong.singers[idx]) {
+          const matchedSong = songsList.find(s =>
+            cardText.includes(s.title)
+          );
+
+          if (
+            matchedSong &&
+            matchedSong.singers &&
+            matchedSong.singers[idx]
+          ) {
             return matchedSong.singers[idx];
           }
         }
@@ -2331,15 +2353,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function showTip(target, name) {
     if (!name) return;
+
     tooltip.textContent = name;
     tooltip.style.display = 'block';
+
     const rect = target.getBoundingClientRect();
     const tRect = tooltip.getBoundingClientRect();
+
     let left = rect.left + (rect.width / 2) - (tRect.width / 2);
     let top = rect.top - tRect.height - 6;
+
     if (top < 4) top = rect.bottom + 6;
+
     tooltip.style.left = `${Math.max(4, left)}px`;
     tooltip.style.top = `${top}px`;
+
     activeTarget = target;
   }
 
@@ -2348,40 +2376,56 @@ document.addEventListener('DOMContentLoaded', () => {
     activeTarget = null;
   }
 
-const selector = '.singers-container .singer-icon[data-singer]';
+  const selector = '.singers-container .singer-icon[data-singer]';
 
   document.addEventListener('mouseover', (e) => {
     if (isTouchMode) return;
+
     const target = e.target.closest(selector);
+
     if (target) {
       const name = resolveSingerName(target);
+
       if (name) showTip(target, name);
     }
   });
 
   document.addEventListener('mouseout', (e) => {
     if (isTouchMode) return;
+
     const target = e.target.closest(selector);
-    if (target && activeTarget === target) hideTip();
+
+    if (target && activeTarget === target) {
+      hideTip();
+    }
   });
 
   document.addEventListener('click', (e) => {
     const target = e.target.closest(selector);
+
     if (target) {
       const name = resolveSingerName(target);
+
       if (name) {
         if (window.innerWidth <= 768 || e.pointerType === 'touch') {
           isTouchMode = true;
-          if (activeTarget === target && tooltip.style.display === 'block') {
+
+          if (
+            activeTarget === target &&
+            tooltip.style.display === 'block'
+          ) {
             hideTip();
           } else {
             showTip(target, name);
           }
+
           e.stopPropagation();
         }
       }
     } else {
-      if (tooltip.style.display === 'block') hideTip();
+      if (tooltip.style.display === 'block') {
+        hideTip();
+      }
     }
   }, { capture: true });
 
@@ -2389,13 +2433,22 @@ const selector = '.singers-container .singer-icon[data-singer]';
     if (tooltip.style.display === 'block' && activeTarget) {
       const rect = activeTarget.getBoundingClientRect();
       const tRect = tooltip.getBoundingClientRect();
+
       let left = rect.left + (rect.width / 2) - (tRect.width / 2);
       let top = rect.top - tRect.height - 6;
+
       if (top < 4) top = rect.bottom + 6;
+
       tooltip.style.left = `${Math.max(4, left)}px`;
       tooltip.style.top = `${top}px`;
     }
   }, { passive: true });
+
+  document.addEventListener('contextmenu', function(e) {
+    if (e.target.closest('.singer-icon')) {
+      e.preventDefault();
+    }
+  });
 });
 </script>
 </body>
