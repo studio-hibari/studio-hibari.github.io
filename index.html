@@ -1225,12 +1225,13 @@ const titleAliases = {
   }
 
   // --- プレイヤー関連の変数 ---
-  let player = null;
-  let isPlayerReady = false;
-  let playQueue = [];
-  let currentPlayIndex = -1;
-  let isShuffleMode = false;
-  let repeatMode = 1;
+let player = null;
+let isPlayerReady = false;
+let pendingPlayIndex = -1;
+let playQueue = [];
+let currentPlayIndex = -1;
+let isShuffleMode = false;
+let repeatMode = 1;
 
   // --- 状態管理・データ用の変数 ---
   let selectedCategory = localStorage.getItem('hibari_category') || "";
@@ -1626,17 +1627,9 @@ function matchSearch(song, queryText) {
       btn.innerHTML = `${labelSub} <span class="count">(${count})</span>`;
     });
   }
-
-  function handlePlayAction(songId, youtubeUrl) {
-    if (selectedCategory === 'マイリスト') {
-      playSpecificSong(songId);
-    } else {
-      if (youtubeUrl) {
-        window.open(youtubeUrl, '_blank', 'noopener,noreferrer');
-      }
-    }
-  }
-
+function handlePlayAction(songId, youtubeUrl) {
+  playSpecificSong(songId);
+}
   function renderSongs() {
     if (typeof songs === 'undefined' || !Array.isArray(songs)) return;
 
@@ -1923,10 +1916,15 @@ if (needStack) {
       }
     });
   }
+function onPlayerReady(event) {
+  isPlayerReady = true;
 
-  function onPlayerReady(event) {
-    isPlayerReady = true;
+  if (pendingPlayIndex !== -1) {
+    const index = pendingPlayIndex;
+    pendingPlayIndex = -1;
+    playTrack(index);
   }
+}
 
   function updatePlayPauseUI(isPlaying) {
     const iconPlay = document.getElementById('iconPlay');
@@ -2012,17 +2010,11 @@ if (needStack) {
           });
         } catch(e) {}
       };
-
-      if (isPlayerReady) {
-        doPlay();
-      } else {
-        const check = setInterval(() => {
-          if (isPlayerReady) {
-            clearInterval(check);
-            doPlay();
-          }
-        }, 100);
-      }
+if (isPlayerReady) {
+  doPlay();
+} else {
+  pendingPlayIndex = index;
+}
     } else {
       playNext();
     }
