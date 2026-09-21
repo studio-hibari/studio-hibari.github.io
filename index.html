@@ -974,6 +974,39 @@ border-color: var(--singer-border-color, inherit) !important;
     display: none;
     box-shadow: 0 2px 6px rgba(0,0,0,0.4);
   }
+}
+/* お問い合わせSNSアイコン専用 */
+.contact-social-link {
+  display: inline-block;
+  text-decoration: none;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.contact-social-icon {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid #CD3764;
+border-radius: 50%;
+  background: rgba(205, 55, 100, 0.08);
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.contact-social-icon img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+}
+
+.contact-social-link:hover .contact-social-icon {
+  background: rgba(205, 55, 100, 0.16);
+  box-shadow: 0 0 8px rgba(205, 55, 100, 0.65);
+}
 </style>
 </head>
 <body id="topPage">
@@ -1124,15 +1157,18 @@ border-color: var(--singer-border-color, inherit) !important;
     <div class="ornament-divider mobile-only-divider">
       <span>✦</span>
     </div>
-
-<p style="margin-top: 8px;">誤りや不足等がございましたら、運営アカウント（
-<a href="https://x.com/npc_katsura" target="_blank" rel="noopener noreferrer" style="margin-right: 8px;">
-  <img src="https://cdn.simpleicons.org/x" alt="X" style="width:18px; height:18px; vertical-align:middle;">
+<p style="margin-top: 8px;">誤りや不足等がございましたら、運営アカウント　
+<a href="https://x.com/npc_katsura" target="_blank" rel="noopener noreferrer" class="contact-social-link">
+  <span class="contact-social-icon">
+    <img src="x-pink-transparent.png" alt="X">
+  </span>
 </a>
-<a href="https://mond.how/npc_katsura" target="_blank" rel="noopener noreferrer">
-  <img src="images/mond.png" alt="mond" style="width:18px; height:18px; vertical-align:middle;">
+<a href="https://mond.how/npc_katsura" target="_blank" rel="noopener noreferrer" class="contact-social-link">
+  <span class="contact-social-icon">
+    <img src="mond-pink-transparent.png" alt="mond">
+  </span>
 </a>
-）までご連絡ください。</p>   
+　までご連絡ください。</p>
     <p class="about-note">※掲載楽曲は、公式動画・公式チャンネルへのリンクをご案内しています。</p>
     <p class="about-note">※掲載コンテンツの無断転載・二次利用はご遠慮ください。</p>
   </div>
