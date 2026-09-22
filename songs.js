@@ -423,7 +423,7 @@ const groupData = {
     color: "#2A4B71"
   },
   "2時だとか": {
-    icon: "https://pbs.twimg.com/media/GotyKn1aEAAax2R?format=jpg&name=medium",
+    icon: "2.jpg",
     color: "#2A4B71"
   }
 };
