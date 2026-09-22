@@ -3607,6 +3607,14 @@ youtube: "",
   tags: ["歌ってみた","コラボ","再生リスト未追加"],
     youtube: "https://youtu.be/OarzCYSujBs?si=5cO1QKg8Gwz6mYKl",
 },
+{ id:332,
+    title:"rail",
+    artist:"渡会雲雀",
+    date: "2026-09-23",
+   singers: ["渡会雲雀"],
+  tags: ["オリジナル曲","再生リスト未追加"],
+    youtube: "https://youtu.be/HH_1ueq1kX0?si=zSv5kukf0fC_K20c",
+},
 
 
 
