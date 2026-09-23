@@ -1297,17 +1297,14 @@ let repeatMode = 1;
   }
 
 function loadState() {
-    const savedSearch = localStorage.getItem('hibari_search');
-    if (savedSearch !== null) {
-      const searchInput = document.getElementById('searchInput');
-      if (searchInput) searchInput.value = savedSearch;
-    }
-    const savedSort = localStorage.getItem('hibari_sort');
-    if (savedSort !== null) {
-      const sortSelect = document.getElementById('sortSelect');
-      if (sortSelect) sortSelect.value = savedSort;
-    }
+const savedSearch = localStorage.getItem('hibari_search');
+if (savedSearch !== null) {
+  const searchInput = document.getElementById('searchInput');
+  const mobileSearchInput = document.getElementById('mobileSearchInput');
 
+  if (searchInput) searchInput.value = savedSearch;
+  if (mobileSearchInput) mobileSearchInput.value = savedSearch;
+}
     document.querySelectorAll('.category-btn').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-tag') === selectedCategory);
     });

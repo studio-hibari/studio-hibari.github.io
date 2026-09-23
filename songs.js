@@ -3612,7 +3612,7 @@ youtube: "",
     artist:"渡会雲雀",
     date: "2026-09-23",
    singers: ["渡会雲雀"],
-  tags: ["オリジナル曲","再生リスト未追加"],
+  tags: ["オリジナル曲"],
     youtube: "https://youtu.be/HH_1ueq1kX0?si=zSv5kukf0fC_K20c",
 },
 
