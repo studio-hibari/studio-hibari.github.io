@@ -2000,22 +2000,31 @@ if (needStack) {
     }
   }
 
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('ytplayer', {
-      host: 'https://www.youtube-nocookie.com',
-      playerVars: {
-        'autoplay': 1,
-        'playsinline': 1,
-        'controls': 1,
-        'enablejsapi': 1,
-        'rel': 0
-      },
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('ytplayer', {
+    host: 'https://www.youtube-nocookie.com',
+    playerVars: {
+      'autoplay': 0,
+      'playsinline': 1,
+      'controls': 1,
+      'enablejsapi': 1,
+      'rel': 0
+    },
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange,
+      'onAutoplayBlocked': onAutoplayBlocked
+    }
+  });
+}
+
+function onAutoplayBlocked() {
+  updatePlayPauseUI(false);
+}
+
+function onAutoplayBlocked() {
+  updatePlayPauseUI(false);
+}
 function onPlayerReady(event) {
   isPlayerReady = true;
 
@@ -2102,14 +2111,15 @@ function onPlayerReady(event) {
       if (pArtist) pArtist.innerText = song.artist;
       if (pThumb) pThumb.src = getYoutubeThumb(song.youtube);
 
-      const doPlay = () => {
-        try {
-          player.loadVideoById({
-            videoId: videoId,
-            startSeconds: startSeconds
-          });
-        } catch(e) {}
-      };
+const doPlay = () => {
+  try {
+    player.loadVideoById({
+      videoId: videoId,
+      startSeconds: startSeconds
+    });
+  } catch(e) {}
+};
+
 if (isPlayerReady) {
   doPlay();
 } else {
