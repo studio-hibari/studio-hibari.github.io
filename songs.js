@@ -674,7 +674,7 @@ const songs = [
     youtube: "https://youtu.be/gw4Zd9Jlzyw?si=LxRYpwk8GaFU9dL7"
   },
   {
-    id: 27,
+    id: 333,
     title: "セカイ",
     artist: "DECO*27×堀江晶太(kemu) ",
     date: "2024-06-09",
@@ -719,7 +719,7 @@ const songs = [
     youtube: "https://youtu.be/_9dvHL1njz8?si=A2wmuyJUZEevUq5q"
   },
   {
-    id: 31,
+    id: 334,
     title:"サマータイムレコード",
     artist:"じん",
     date: "2023-08-25",
@@ -845,7 +845,7 @@ const songs = [
     youtube: "https://youtu.be/IH_fW8ttjIc?si=Y-kx33J6Uf8Bkiu9"
   },
   {
-    id: 45,
+    id:45,
     title: "tokyolit",
     artist: "渡会雲雀",
     date: "2025-09-24",
@@ -854,7 +854,7 @@ const songs = [
     youtube: "https://youtu.be/r6RsOSOnUTs?si=xuRmRFK9zqHT-K8v"
   },
   {
-    id: 43,
+    id:335,
     title: "KING",
     artist: "Kanaria",
     date: "2023-02-16",
@@ -863,7 +863,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/fA8KModMkVo?si=BuOjGViJjHAUSp27&t=60"
   },
   {
-    id: 43,
+    id:336,
     title: "テレキャスタービーボーイ",
     artist: "すりぃ",
     date: "2023-02-16",
@@ -872,7 +872,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/fA8KModMkVo?si=hOd_ihUlOBo07sNd&t=463"
   },
   {
-    id: 43,
+    id:337,
     title: "狂乱 Hey Kids!!",
     artist: "THE ORAL CIGARETTES",
     date: "2023-02-16",
@@ -881,7 +881,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/fA8KModMkVo?si=pwixIu2zT8YaFv_r&t=776"
   },
   {
-    id: 43,
+    id:338,
     title: "空想フォレスト",
     artist: "じん",
     date: "2023-02-16",
@@ -890,7 +890,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/fA8KModMkVo?si=QEAb2ZU5almMXkV9&t=1266"
   },
   {
-    id: 43,
+    id:339,
     title: "夜明けと蛍",
     artist: "n-buna",
     date: "2023-02-16",
@@ -899,7 +899,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/fA8KModMkVo?si=lJJefECfqy7h9pKs&t=1794"
   },
   {
-    id: 43,
+    id:340,
     title: "命に嫌われている。",
     artist: "カンザキイオリ",
     date: "2023-02-16",
@@ -908,7 +908,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/fA8KModMkVo?si=raX70DCZEeZIYq6P&t=2192"
   },
   {
-    id: 44,
+    id:341,
     title: "敗北の少年",
     artist: "kemu",
     date: "2022-07-16",
@@ -917,7 +917,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/QP1DHr_w5kw?si=1r3gxdguqSzYlhtd&t=1413"
   },
   {
-    id: 45,
+    id:342,
     title: "サマータイムレコード",
     artist: "じん",
     date: "2022-07-16",
@@ -1331,7 +1331,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/0aFoYjn4KxQ?si=wa_HMus0BTcvQTm6&t=499"
   },
   {
-    id: 89,
+    id:343,
     title: "again",
     artist: "YUI",
     date: "2025-02-13",
@@ -1340,7 +1340,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/0aFoYjn4KxQ?si=nbND_pKd3e9iVvZx&t=1045"
   },
   {
-    id: 89,
+    id:344,
     title: "The Biggest Dreamer",
     artist: "和田光司",
     date: "2025-02-13",
@@ -1349,7 +1349,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/0aFoYjn4KxQ?si=4P7xxH2AgxjCrYhn&t=1525"
   },
   {
-    id: 89,
+    id:345,
     title: "修羅",
     artist: "DOES",
     date: "2025-02-13",
@@ -1358,7 +1358,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/0aFoYjn4KxQ?si=bjumgBR45A-rPmav&t=2042"
   },
   {
-    id: 89,
+    id:346,
     title: "One day",
     artist: "The ROOTLESS",
     date: "2025-02-13",
@@ -1367,7 +1367,7 @@ const songs = [
     youtube: "https://www.youtube.com/live/0aFoYjn4KxQ?si=B9U0rS0HZg_CmvqB&t=2434"
   },
   {
-    id: 90,
+    id:347,
     title: "タイムパラドックス",
     artist: "Vaundy",
     date: "2025-09-23",
@@ -2458,7 +2458,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
     tags: ["歌枠","コラボ","再生リスト未追加"],
     youtube: "https://www.youtube.com/live/g5Ti7RhlfAk?si=nNpuilufUdMoBiS_&t=4553"
   },
-   { id: 215,
+   { id:348,
     title:"裸の勇者",
     artist: "Vaundy",
     date: "2025-06-30",
@@ -2466,7 +2466,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
     tags: ["歌枠","再生リスト未追加"],
     youtube: "https://www.youtube.com/live/g5Ti7RhlfAk?si=ithiJlUSnx4wSwjQ&t=5274"
   },
-   { id: 215,
+   { id:349,
     title:"リライト",
     artist: "ASIAN KUNG-FU GENERATION",
     date: "2025-06-30",
@@ -2474,7 +2474,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
     tags: ["歌枠","コラボ","再生リスト未追加"],
     youtube: "https://www.youtube.com/live/g5Ti7RhlfAk?si=-ZCQVpMM-8-GC5IO&t=6522"
   },
-  { id: 216,
+  { id:139,
     title:"心絵",
     artist: "ロードオブメジャー",
     date: "2025-06-30",
@@ -2823,7 +2823,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
     youtube: "",
     customThumbnail: "https://pbs.twimg.com/media/Gb3CgxabwAE92xv?format=jpg&name=large"
   },
-   { id: 254,
+   { id:351,
     title:"Checkmate",
     artist:"VOLTACTION",
     date: "2025-02-23",
@@ -2833,7 +2833,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
    youtube: "",
     customThumbnail: "https://pbs.twimg.com/media/Gb3CgxabwAE92xv?format=jpg&name=large"
   },
-   { id: 254,
+   { id:352,
     title:"Crazy World",
     artist:"VOLTACTION",
     date: "2025-02-23",
@@ -2843,7 +2843,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
     youtube: "",
     customThumbnail: "https://pbs.twimg.com/media/Gb3CgxabwAE92xv?format=jpg&name=large"
   },
-   { id: 254,
+   { id:353,
     title:"Desert Diamond",
     artist:"VOLTACTION",
     date: "2025-02-23",
@@ -3030,7 +3030,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
     youtube: "https://youtu.be/n72iPfcSzko?si=Evniyt_HovCgKUki",
   },
 
-  { id:273,
+  { id:354,
     title:"Crashing Winners",
     artist:"VOLTACTION×3SKM",
     date: "2026-01-05",
@@ -3439,7 +3439,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
     tags: ["3D/ライブ","コラボ","オリジナル曲","再生リスト未追加"],
     youtube: "https://youtu.be/0zXZmhBR8ik?si=R0PNVtpu60vnU87L",
 },
-{ id:316,
+{ id:355,
     title:"Virtual to LIVE",
     artist:"にじさんじ",
     date: "2025-06-22",
@@ -3448,7 +3448,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
     youtube: "",
     customThumbnail:"https://pbs.twimg.com/media/GmSphssaoAAFfTR?format=jpg&name=large" // ← 手動で入れたいサムネイルのパス（無い場合は空欄でNo Imageになる）
 },
-{ id:317,
+{ id:350,
     title:"インレイド Dance Remix",
     artist:"VOLTACTION",
     date: "2024-12-31",
@@ -3457,7 +3457,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
     tags: ["3D/ライブ","オリジナル曲","再生リスト未追加"],
     youtube: "https://www.youtube.com/live/Ip0bQfyoqgs?si=BFb1Vqcyt2TS8cPh&t=4909",
 },
-{ id:316,
+{ id:356,
     title:"De Lu Lu",
     artist:"VOLTACTION",
     date: "2024-12-31",
@@ -3466,7 +3466,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
     tags: ["3D/ライブ","オリジナル曲","再生リスト未追加"],
     youtube: "https://www.youtube.com/live/Ip0bQfyoqgs?si=y4hBjnKCj4ZsVKIo&t=5495",
 },
-{ id:316,
+{ id:357,
     title:"Not For You",
     artist:"叶、葛葉",
     date: "2024-12-31",
@@ -3475,7 +3475,7 @@ tags: ["コラボ", "コーラス/演奏", "再生リスト未追加"],
     tags: ["3D/ライブ","コラボ","再生リスト未追加"],
     youtube: "https://www.youtube.com/live/Ip0bQfyoqgs?si=cswGGUQtzCRIrLVA&t=11400",
 },
-{ id:317,
+{ id:332,
     title:"Virtual to LIVE",
     artist:"にじさんじ",
     date: "2024-12-31",
@@ -3607,7 +3607,7 @@ youtube: "",
   tags: ["歌ってみた","コラボ","再生リスト未追加"],
     youtube: "https://youtu.be/OarzCYSujBs?si=5cO1QKg8Gwz6mYKl",
 },
-{ id:332,
+{ id:358,
     title:"rail",
     artist:"渡会雲雀",
     date: "2026-09-23",
