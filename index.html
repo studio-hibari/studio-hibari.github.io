@@ -326,6 +326,38 @@
       color: #718096;
       margin-top: 4px;
     }
+    /* 更新履歴 */
+.update-history {
+  margin-top: 24px;
+  padding-top: 0;
+}
+
+.update-history-title {
+  color: var(--primary-pink);
+  font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.update-history-item {
+  margin-bottom: 12px;
+}
+
+.update-history-date {
+  color: var(--primary-pink);
+  font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.update-history-content {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.7;
+}
 
     .yt-container {
       position: fixed; bottom: 85px; right: 20px; width: 220px; height: 124px;
@@ -1172,10 +1204,36 @@ border-radius: 50%;
   </span>
 </a>
 　までご連絡ください。</p>
-    <p class="about-note">※掲載楽曲は、公式動画・公式チャンネルへのリンクをご案内しています。</p>
-    <p class="about-note">※掲載コンテンツの無断転載・二次利用はご遠慮ください。</p>
+<p class="about-note">※掲載楽曲は、公式動画・公式チャンネルへのリンクをご案内しています。</p>
+<p class="about-note">※掲載コンテンツの無断転載・二次利用はご遠慮ください。</p>
+
+<div class="update-history">
+  <div class="ornament-divider" style="margin-bottom: 14px;">
+    <span>✦</span>
+  </div>
+
+  <div class="update-history-title">✦ UPDATE HISTORY ✦</div>
+
+  <div class="update-history-item">
+    <div class="update-history-date">2026.09.24</div>
+    <div class="update-history-content">
+ ・楽曲データを更新<br>
+ ・楽曲再生時に違う楽曲のリンクに飛ぶ不具合を修正<br>
+・スマートフォンでの検索絞り込み機能を調整
+    </div>
+  </div>
+
+  <div class="update-history-item">
+    <div class="update-history-date">2026.09.23</div>
+    <div class="update-history-content">
+      ・Studio　Hibariオープン!<br>
+    </div>
   </div>
 </div>
+
+</div>
+</div>
+
 
 <div class="yt-container" id="ytContainer">
   <div id="ytplayer"></div>
