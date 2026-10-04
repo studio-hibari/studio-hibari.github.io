@@ -65,32 +65,32 @@
       max-width: 1350px; width: 100%; margin: 0 auto;
     }
 
-    .custom-logo-header {
-      text-align: center;
-      margin: 2px auto 14px auto;
-      position: relative;
-      padding: 0;
-      max-width: 720px;
-      width: 100%;
-    }
+.custom-logo-header {
+  text-align: center;
+  margin: 2px auto 14px auto;
+  position: relative;
+  padding: 0;
+  max-width: 720px;
+  width: 100%;
+  box-sizing: border-box;
+}
     .logo-wrapper {
       display: block;
       position: relative;
       width: 100%;
     }
-
-    .animated-main-logo {
-      width: 100%;
-      height: 360px;
-      background-image: url('imagesmainlogo.png');
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      display: block;
-      animation: logoNeonPulse 3.5s ease-in-out infinite alternate;
-      -webkit-touch-callout: none;
-      user-select: none;
-    }
+.animated-main-logo {
+  width: 100%;
+  height: 480px;
+  background-image: url('imagesmainlogo.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+  animation: logoNeonPulse 3.5s ease-in-out infinite alternate;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
     @keyframes logoNeonPulse {
       0% {
         filter: drop-shadow(0 0 3px rgba(168, 85, 247, 0.4))
@@ -420,7 +420,7 @@ border-color: var(--singer-border-color, inherit) !important;
     margin: 0 !important;
   }
  .animated-main-logo {
-  height: 170px !important;
+   height: 300px !important;
   width: 100% !important;
   background-size: contain !important;
   background-repeat: no-repeat !important;
