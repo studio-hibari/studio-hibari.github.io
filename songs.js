@@ -2531,7 +2531,7 @@ tags: ["コラボ", "コーラス/演奏"],
     artist:"sumika",
     date: "2026-01-06",
     singers: ["渡会雲雀","風楽奏斗","北見遊征"],
-    tags: ["3D/ライブ","コラボ","再生リスト未追加"],
+    tags: ["3D/ライブ","コラボ"],
     youtube: "https://www.youtube.com/live/73l3bvqZNMk?si=7ao5hs-qnix4NSSm&t=3460"
   },
   { id: 223,
