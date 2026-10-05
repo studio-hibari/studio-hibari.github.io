@@ -412,15 +412,16 @@ border-color: var(--singer-border-color, inherit) !important;
  /* スマホ向けレイアウト調整 */
 @media (max-width: 600px) {
   .custom-logo-header {
-    padding-top: 6px !important;
-    padding-bottom: 6px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
     margin-bottom: 0 !important;
   }
   .logo-wrapper {
     margin: 0 !important;
   }
- .animated-main-logo {
-   height: 300px !important;
+.animated-main-logo {
+  height: calc(55.9vw + 12px) !important;
   width: 100% !important;
   background-size: contain !important;
   background-repeat: no-repeat !important;
