@@ -3769,6 +3769,15 @@ customThumbnail:"https://pbs.twimg.com/media/Ggu5mWpawAAGTeU?format=jpg&name=med
 customThumbnail:"https://prcdn.freetls.fastly.net/release_image/30865/1306/30865-1306-e1e919b269d4acca87e57566ab359f93-1920x1080.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff" // ← 手動で入れたいサムネイルのパス（無い場合は空欄でNo Imageになる）
 
 },
+{ id:374,
+    title:"ひとりごつ",
+    artist:"ハチワレ(CV:田中誠人)",
+    date: "2024-03-25",
+   singers: ["風楽奏斗"],
+  tags: ["歌枠","コーラス/演奏"],
+    youtube: "https://www.youtube.com/live/F5QSDB7nGe4?si=4ZNINDP_bGPPZYIS&t=2398",
+
+},
 
 
 
