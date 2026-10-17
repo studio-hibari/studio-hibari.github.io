@@ -3315,8 +3315,7 @@ tags: ["コラボ", "コーラス/演奏"],
     date: "2025-12-31",
     singers: ["渡会雲雀"],
     tags: ["3D/ライブ","バンド"],
-    youtube: "",
-    customThumbnail:"https://pbs.twimg.com/media/G6U6xMOaEAAfaLL?format=jpg&name=large" // ← 手動で入れたいサムネイルのパス（無い場合は空欄でNo Imageになる）
+    youtube: "https://youtu.be/Ax1aEWHesVk?si=h6EPWwLgkmBzqy0Q",
 },
 { id:304,
     title:"Preserved Roses",
@@ -3778,6 +3777,17 @@ customThumbnail:"https://prcdn.freetls.fastly.net/release_image/30865/1306/30865
     youtube: "https://www.youtube.com/live/F5QSDB7nGe4?si=4ZNINDP_bGPPZYIS&t=2398",
 
 },
+{ id:375,
+    title:"Seven Days",
+    artist:"VOLTACTION",
+    date: "2026-08-22",
+   singers: ["渡会雲雀","風楽奏斗","四季凪アキラ","セラフ・ダズルガーデン"],
+      group: ["VOLTACTION"],
+  tags: ["3D/ライブ","オリジナル曲"],
+    youtube: "https://youtu.be/FQmSbVixyzY?si=sZ9VPhwoEBssjgm8",
+
+},
+
 
 
 
