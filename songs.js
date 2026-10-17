@@ -412,6 +412,10 @@ const singerData = {
     icon: "https://pbs.twimg.com/profile_images/1907036628629250049/7yMTK6kz_400x400.jpg", 
     color: "#DAFFF9" 
     },
+    "社築": { 
+    icon: "https://pbs.twimg.com/profile_images/1106218936364761089/Hxyuyvvl_400x400.png", 
+    color: "#B6C6F2" 
+    },
 
 
 
@@ -3785,6 +3789,17 @@ customThumbnail:"https://prcdn.freetls.fastly.net/release_image/30865/1306/30865
       group: ["VOLTACTION"],
   tags: ["3D/ライブ","オリジナル曲"],
     youtube: "https://youtu.be/FQmSbVixyzY?si=sZ9VPhwoEBssjgm8",
+
+},
+{ id:376,
+    title:"ゲーム・ボーイ・アワー",
+    artist:"社築",
+    date: "2025-01-01",
+   singers: ["社築","加賀美ハヤト"],
+  tags: ["コーラス/演奏"],
+    youtube: "",
+    customThumbnail:"https://pbs.twimg.com/media/GgMVE4za0AA74IT?format=jpg&name=large" // ← 手動で入れたいサムネイルのパス（無い場合は空欄でNo Imageになる）
+
 
 },
 
