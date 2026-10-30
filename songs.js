@@ -3805,7 +3805,7 @@ customThumbnail:"https://prcdn.freetls.fastly.net/release_image/30865/1306/30865
     title:"逆に的な I LOVE YOU",
     artist:"VOLTACTION",
     date: "2026-10-28",
-   singers: ["渡会雲雀"],
+   singers: ["渡会雲雀","風楽奏斗","四季凪アキラ","セラフ・ダズルガーデン"],
    group: ["VOLTACTION"],
   tags: ["オリジナル曲"],
     youtube: "https://youtu.be/TVUhlgDNeiY?si=VIi6WGnuqOFLJhNJ",
