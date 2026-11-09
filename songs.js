@@ -3868,6 +3868,14 @@ customThumbnail:"https://prcdn.freetls.fastly.net/release_image/30865/1306/30865
   tags: ["オリジナル曲"],
     youtube: "https://music.youtube.com/watch?v=gBq8RG6jl7Q&si=2q73sPQUyE-zyb_L",
 },
+{ id:384,
+    title:" DADDY ! DADDY ! DO !",
+    artist:"鈴木雅之 feat. 鈴木愛理",
+    date: "2025-02-13",
+   singers: ["渡会雲雀"],
+  tags: ["歌枠"],
+    youtube: "https://www.youtube.com/live/0aFoYjn4KxQ?si=8m772SsoAaOAuifH&t=2832",
+},
 
 
 
