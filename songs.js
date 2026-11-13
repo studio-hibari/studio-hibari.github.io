@@ -416,6 +416,10 @@ const singerData = {
     icon: "https://pbs.twimg.com/profile_images/1106218936364761089/Hxyuyvvl_400x400.png", 
     color: "#B6C6F2" 
     },
+      "ハユン": { 
+    icon: "https://pbs.twimg.com/profile_images/2117188121024712704/vNlDwLdq_400x400.jpg", 
+    color: "#B14D4D" 
+    },
 
 
 
@@ -3875,6 +3879,14 @@ customThumbnail:"https://prcdn.freetls.fastly.net/release_image/30865/1306/30865
    singers: ["渡会雲雀"],
   tags: ["歌枠"],
     youtube: "https://www.youtube.com/live/0aFoYjn4KxQ?si=8m772SsoAaOAuifH&t=2832",
+},
+{ id:385,
+   title:"サマータイムレコード",
+    artist:"じん",
+    date: "2026-11-13",
+   singers: ["渡会雲雀","ハユン","小柳ロウ"],
+  tags: ["3D/ライブ","コラボ"],
+    youtube: "https://www.youtube.com/live/zo_aAXasJhc?si=0iQMMJWo_ubO9ndz&t=3834",
 },
 
 
