@@ -3888,7 +3888,17 @@ customThumbnail:"https://prcdn.freetls.fastly.net/release_image/30865/1306/30865
   tags: ["3D/ライブ","コラボ"],
     youtube: "https://www.youtube.com/live/zo_aAXasJhc?si=0iQMMJWo_ubO9ndz&t=3834",
 },
+{ id:386,
+   title:"逆に的な I LOVE YOU",
+    artist:"VOLTACTION",
+    date: "2026-11-07",
+ singers: ["渡会雲雀","風楽奏斗","四季凪アキラ","セラフ・ダズルガーデン"],
+   group: ["VOLTACTION"],
+  tags: ["3D/ライブ","オリジナル曲"],
+youtube: "",
+    customThumbnail:"https://pbs.twimg.com/media/HWh15sLbEAAHCh6?format=jpg&name=large" // ← 手動で入れたいサムネイルのパス（無い場合は空欄でNo Imageになる）
 
+},
 
 
 
