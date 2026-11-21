@@ -1569,9 +1569,9 @@ function matchSearch(song, queryText) {
   if (!queryText) return true;
 
   const rawQuery = queryText.trim();
-  const searchTerms = rawQuery.includes(' OR ') || rawQuery.includes(',')
-    ? rawQuery.split(/ OR |,/).map(t => t.trim()).filter(Boolean)
-    : rawQuery.split(/\s+/).map(t => t.trim()).filter(Boolean);
+const searchTerms = rawQuery.includes(' OR ') || rawQuery.includes(',')
+  ? rawQuery.split(/ OR |,/).map(t => t.trim()).filter(Boolean)
+  : [rawQuery];
 
   const groupText = song.group ? song.group.join(' ') : '';
   let singerText = '';
