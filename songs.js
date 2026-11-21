@@ -184,7 +184,7 @@ const singerData = {
     icon: "https://pbs.twimg.com/profile_images/1955335116491739137/-d_gZDDt_400x400.jpg", 
     color: "#DC3753" 
   },
-  "レン ゾット": { 
+  "レンゾット": { 
     icon: "https://pbs.twimg.com/profile_images/1590553426727145472/TEG1G71v_400x400.jpg", 
     color: "#429B76" 
   },
@@ -1507,7 +1507,7 @@ const songs = [
     title: "Never-ending tale",
     artist: "麦野優衣(実況パワフルプロ野球2016)",
     date: "2025-07-24",
-    singers: ["渡会雲雀","ルンルン","風楽奏斗","北見遊征","珠乃井ナナ","ドーラ","佐伯イッテツ","天宮こころ","ハナ・マキア","クロード・クローマーク","天ヶ瀬むゆ","デレム・カド","愛園愛美","ロゼミ・ラブロック","レン ゾット","セラフ・ダズルガーデン"],
+    singers: ["渡会雲雀","ルンルン","風楽奏斗","北見遊征","珠乃井ナナ","ドーラ","佐伯イッテツ","天宮こころ","ハナ・マキア","クロード・クローマーク","天ヶ瀬むゆ","デレム・カド","愛園愛美","ロゼミ・ラブロック","レンゾット","セラフ・ダズルガーデン"],
     tags: ["歌ってみた","コラボ","再生リスト未追加"],
     youtube: "https://youtu.be/n6R6BSDTFPU?si=ezERNC3iURrjLNAO"
   },
@@ -3899,7 +3899,14 @@ youtube: "",
     customThumbnail:"https://pbs.twimg.com/media/HWh15sLbEAAHCh6?format=jpg&name=large" // ← 手動で入れたいサムネイルのパス（無い場合は空欄でNo Imageになる）
 
 },
-
+{ id:387,
+   title:"The Beginning",
+    artist:"ONE OK ROCK",
+    date: "2026-11-21",
+   singers: ["渡会雲雀","レンゾット"],
+  tags: ["歌ってみた","コラボ","再生リスト未追加"],
+    youtube: "https://youtu.be/Tl_ExPBeiMw?si=h2TRnyWamQaug59H",
+},
 
 
 
